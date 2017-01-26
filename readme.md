@@ -1,6 +1,6 @@
-# Testing with Spring Boot 1.4
+# Testing with Spring Boot 1.5
 
-This repository contains code to demonstrate the use of the new Spring Boot 1.4 testing support.
+This repository contains code to demonstrate the use of the new Spring Boot 1.5 testing support.
 
 In particular it shows the usage of:
 
