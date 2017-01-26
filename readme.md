@@ -12,3 +12,4 @@ In particular it shows the usage of:
 * `@MockBean` and `@WebMvcTest` through [CarControllerTests.java](src/test/java/com/example/web/CarControllerTests.java) 
 * `@WebMvcTest` with Selenium and HtmlUnit through [CarControllerSeleniumTests.java](src/test/java/com/example/web/CarControllerSeleniumTests.java) and [CarControllerHtmlUnitTests.java](src/test/java/com/example/web/CarControllerHtmlUnitTests.java) 
 * `TestRestTemplate` through [CarControllerRestTests.java](src/test/java/com/example/web/CarControllerSeleniumTests.java)
+* `@Rule OutputCapture` through through [OutputCapturingTests.java](src/test/java/com/example/OutputCapturingTests.java)
