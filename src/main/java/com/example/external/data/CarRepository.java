@@ -17,12 +17,14 @@
 package com.example.external.data;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
  * Repository for {@link CarEntity}.
- * 
+ *
  * @author Mark Paluch
  */
+@RestResource(path = "cars", rel = "cars")
 public interface CarRepository extends CrudRepository<CarEntity, Long> {
 
     CarEntity findByName(String name);

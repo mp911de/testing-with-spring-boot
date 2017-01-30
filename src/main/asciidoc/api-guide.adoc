@@ -1,0 +1,89 @@
+= RESTful Notes API Guide
+Mark Paluch;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview]]
+= Overview
+
+[[overview-errors]]
+== Errors
+
+Whenever an error response (status code >= 400) is returned, the body will contain a JSON object
+that describes the problem. The error object has the following structure:
+
+include::{snippets}/error-example/response-fields.adoc[]
+
+For example, a request that attempts to apply a non-existent tag to a note will produce a
+`400 Bad Request` response:
+
+include::{snippets}/error-example/http-response.adoc[]
+
+
+[[resources]]
+= Resources
+
+
+
+[[resources-index]]
+== Index
+
+The index provides the entry point into the service.
+
+
+
+[[resources-index-access]]
+=== Accessing the index
+
+A `GET` request is used to access the index
+
+==== Response structure
+
+include::{snippets}/index-example/response-fields.adoc[]
+
+==== Example response
+
+include::{snippets}/index-example/http-response.adoc[]
+
+
+
+[[resources-index-links]]
+==== Links
+
+include::{snippets}/index-example/links.adoc[]
+
+
+
+[[resources-cars]]
+== Cars
+
+The Cars resources is used to create and list cars.
+
+
+
+[[resources-cars-list]]
+=== Listing cars
+
+A `GET` request will list all of the service's notes.
+
+==== Response structure
+
+include::{snippets}/cars-list-example/response-fields.adoc[]
+
+==== Example request
+
+include::{snippets}/cars-list-example/curl-request.adoc[]
+
+==== Example response
+
+include::{snippets}/cars-list-example/http-response.adoc[]
+
+[[resources-notes-list-links]]
+==== Links
+
+include::{snippets}/cars-list-example/links.adoc[]
+
