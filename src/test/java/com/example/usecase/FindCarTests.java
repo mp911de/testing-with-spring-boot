@@ -16,15 +16,15 @@
 
 package com.example.usecase;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import org.mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import com.example.domain.Car;
 import com.example.external.data.CarEntity;
@@ -32,7 +32,7 @@ import com.example.external.data.CarRepository;
 
 /**
  * Unit test for {@link FindCar}.
- * 
+ *
  * @author Mark Paluch
  */
 public class FindCarTests {
@@ -45,9 +45,9 @@ public class FindCarTests {
     @Before
     public void before() throws Exception {
 
-    	MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.initMocks(this);
 
-		sut = new FindCar(carRepositoryMock);
+        sut = new FindCar(carRepositoryMock);
     }
 
     @Test
@@ -65,7 +65,8 @@ public class FindCarTests {
 
         Optional<Car> present = sut.findCar("Honda");
 
-        assertThat(present).isPresent();
-        assertThat(present.get().getName()).isEqualTo("Honda");
+        assertThat(present).isPresent().hasValueSatisfying(car -> {
+            assertThat(car.getName()).isEqualTo("Honda");
+        });
     }
 }
