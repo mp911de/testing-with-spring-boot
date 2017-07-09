@@ -1,22 +1,17 @@
 package com.example.web;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
-import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.*;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.*;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import javax.servlet.RequestDispatcher;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -81,7 +76,7 @@ public class ApiDocumentation {
                 .andDo(document(
                         "index-example",
                         links(linkWithRel("cars").description("The <<resources-cars,Cars resource>>"), linkWithRel("profile")
-                                .description("The ALPS profile for the service")), responseFields(fieldWithPath("_links")
+                                .description("The ALPS profile for the service")), responseFields(subsectionWithPath("_links")
                                 .description("<<resources-index-links,Links>> to other resources"))));
 
     }
@@ -103,8 +98,10 @@ public class ApiDocumentation {
                                 .description("Search link for this resource"),
                                 linkWithRel("profile").description("The ALPS profile for this resource")),
                         responseFields(
-                                fieldWithPath("_embedded.cars").description("An array of <<resources-car, Car resources>>"),
-                                fieldWithPath("_links").description("<<resources-cars-list-links, Links>> to other resources"))));
+                                subsectionWithPath("_embedded.cars")
+                                        .description("An array of <<resources-car, Car resources>>"),
+                                subsectionWithPath("_links").description(
+                                        "<<resources-cars-list-links, Links>> to other resources"))));
     }
 
 }
