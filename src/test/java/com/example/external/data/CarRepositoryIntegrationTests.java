@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,28 +16,27 @@
 
 package com.example.external.data;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 /**
  * @author Mark Paluch
  */
-@RunWith(SpringRunner.class)
+@SpringJUnitConfig
 @DataJpaTest
-public class CarRepositoryIntegrationTests {
+class CarRepositoryIntegrationTests {
 
     @Autowired
     CarRepository carRepository;
 
     @Test
-    public void shouldFindByName() throws Exception {
+    void shouldFindByName() {
 
-    	carRepository.save(new CarEntity("Multivan"));
+        carRepository.save(new CarEntity("Multivan"));
 
         CarEntity present = carRepository.findByName("Multivan");
 
@@ -45,7 +44,7 @@ public class CarRepositoryIntegrationTests {
     }
 
     @Test
-    public void shouldNotFindByName() throws Exception {
+    void shouldNotFindByName() {
 
         CarEntity absent = carRepository.findByName("Unknown");
 
