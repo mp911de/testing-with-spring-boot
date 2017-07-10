@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,32 +18,28 @@ package com.example.usecase;
 
 import java.util.Optional;
 
+import lombok.RequiredArgsConstructor;
+
 import com.example.annotation.UseCase;
 import com.example.domain.Car;
 import com.example.external.data.CarEntity;
 import com.example.external.data.CarRepository;
 
-import lombok.SneakyThrows;
-
 /**
  * @author Mark Paluch
  */
 @UseCase
+@RequiredArgsConstructor
 public class FindCar {
 
     private final CarRepository carRepository;
 
-    public FindCar(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
-
-    @SneakyThrows
     public Optional<Car> findCar(String name) {
 
         CarEntity carEntity = carRepository.findByName(name);
 
         if (carEntity != null) {
-            return Optional.ofNullable(new Car(carEntity.getName()));
+            return Optional.of(new Car(carEntity.getName()));
         }
 
         return Optional.empty();

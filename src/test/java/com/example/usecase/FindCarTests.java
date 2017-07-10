@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public class FindCarTests {
     private CarRepository carRepositoryMock;
 
     @Before
-    public void before() throws Exception {
+    public void before(){
 
         MockitoAnnotations.initMocks(this);
 
@@ -51,7 +51,7 @@ public class FindCarTests {
     }
 
     @Test
-    public void shouldNotFindCar() throws Exception {
+    public void shouldNotFindCar(){
 
         Optional<Car> absent = sut.findCar("absent");
 
@@ -59,14 +59,12 @@ public class FindCarTests {
     }
 
     @Test
-    public void shouldFindCar() throws Exception {
+    public void shouldFindCar(){
 
         when(carRepositoryMock.findByName("Honda")).thenReturn(new CarEntity("Honda"));
 
         Optional<Car> present = sut.findCar("Honda");
 
-        assertThat(present).isPresent().hasValueSatisfying(car -> {
-            assertThat(car.getName()).isEqualTo("Honda");
-        });
+        assertThat(present).isPresent().map(Car::getName).isEqualTo("Honda");
     }
 }

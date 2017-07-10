@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,18 +21,12 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.domain.Car;
 import com.example.domain.Money;
 import com.example.usecase.FindCar;
 import com.example.usecase.SellCar;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Mark Paluch
@@ -64,8 +58,8 @@ public class CarController {
 
         return car //
                 .map((body) -> ResponseEntity.ok(String.format("<html><h1>Car</h1><p>Found %s</p></html>", body.getName()))) //
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(String.format("<html><h1>Not Found</h1><p>Cannot find %s</p></html>", name)));
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                        String.format("<html><h1>Not Found</h1><p>Cannot find %s</p></html>", name)));
     }
 
     @DeleteMapping("/cars/{name}")
@@ -76,6 +70,5 @@ public class CarController {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     private void handleNotFoundException(NotFoundException e) {
-
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 the original author or authors.
+ * Copyright 2016-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,10 @@
 
 package com.example.usecase;
 
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+
 import com.example.annotation.UseCase;
 import com.example.domain.Car;
 import com.example.domain.Money;
@@ -25,15 +29,12 @@ import com.example.external.dealer.DealerService;
  * @author Mark Paluch
  */
 @UseCase
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SellCar {
 
-    private final DealerService dealerService;
-    private final FindCar findCar;
-
-    public SellCar(DealerService dealerService, FindCar findCar) {
-        this.dealerService = dealerService;
-        this.findCar = findCar;
-    }
+    DealerService dealerService;
+    FindCar findCar;
 
     public Money sellCar(String name) {
 
