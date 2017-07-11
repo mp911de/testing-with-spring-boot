@@ -52,7 +52,7 @@ public class TestingWithSpringBootApplicationTests {
     @Test
     public void test() {
 
-        ResponseEntity<String> response = this.restTemplate.getForEntity("/vehicles/{name}", String.class, "Honda");
+        ResponseEntity<String> response = this.restTemplate.getForEntity("/cars/{name}", String.class, "Honda");
 
         assertThat(response.getBody()).contains("Honda");
     }
