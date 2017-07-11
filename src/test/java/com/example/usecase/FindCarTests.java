@@ -16,8 +16,8 @@
 
 package com.example.usecase;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import java.util.Optional;
 
@@ -43,7 +43,7 @@ public class FindCarTests {
     private CarRepository carRepositoryMock;
 
     @Before
-    public void before(){
+    public void before() {
 
         MockitoAnnotations.initMocks(this);
 
@@ -51,7 +51,7 @@ public class FindCarTests {
     }
 
     @Test
-    public void shouldNotFindCar(){
+    public void shouldNotFindCar() {
 
         Optional<Car> absent = sut.findCar("absent");
 
@@ -59,12 +59,12 @@ public class FindCarTests {
     }
 
     @Test
-    public void shouldFindCar(){
+    public void shouldFindCar() {
 
         when(carRepositoryMock.findByName("Honda")).thenReturn(new CarEntity("Honda"));
 
         Optional<Car> present = sut.findCar("Honda");
 
-        assertThat(present).isPresent().map(Car::getName).isEqualTo("Honda");
+        assertThat(present).isPresent().map(Car::getName).contains("Honda");
     }
 }

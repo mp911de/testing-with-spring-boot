@@ -38,10 +38,6 @@ public class FindCar {
 
         CarEntity carEntity = carRepository.findByName(name);
 
-        if (carEntity != null) {
-            return Optional.of(new Car(carEntity.getName()));
-        }
-
-        return Optional.empty();
+        return Optional.ofNullable(carEntity).map(CarEntity::getName).map(Car::new);
     }
 }
