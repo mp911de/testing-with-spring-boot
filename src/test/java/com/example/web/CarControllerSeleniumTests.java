@@ -21,12 +21,10 @@ import static org.mockito.Mockito.*;
 
 import java.util.Optional;
 
-import com.example.usecase.SellCar;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -34,10 +32,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.domain.Car;
 import com.example.usecase.FindCar;
+import com.example.usecase.SellCar;
 
 /**
  * Selenium Tests for {@link CarController}.
- * 
+ *
  * @author Mark Paluch
  */
 @RunWith(SpringRunner.class)
@@ -54,7 +53,7 @@ public class CarControllerSeleniumTests {
     private SellCar sellCar;
 
     @Test
-    public void findCarShouldReturnCar() throws Exception {
+    public void findCarShouldReturnCar() {
 
         when(findCar.findCar("Honda")).thenReturn(Optional.of(new Car("Honda")));
 

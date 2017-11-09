@@ -55,7 +55,7 @@ public class CarControllerRestTests {
     private SellCar sellCar;
 
     @Test
-    public void findCarShouldReturnCar() throws Exception {
+    public void findCarShouldReturnCar() {
 
         when(findCar.findCar("Honda")).thenReturn(Optional.of(new Car("Honda")));
 
