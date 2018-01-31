@@ -48,7 +48,8 @@ public class CarControllerRestTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @MockBean
+    // As spring will configure the full context, no need to mock this bean
+    //@MockBean
     private FindCar findCar;
 
     @MockBean
@@ -57,7 +58,7 @@ public class CarControllerRestTests {
     @Test
     public void findCarShouldReturnCar() {
 
-        when(findCar.findCar("Honda")).thenReturn(Optional.of(new Car("Honda")));
+        //when(findCar.findCar("Honda")).thenReturn(Optional.of(new Car("Honda")));
 
         ResponseEntity<Car> honda = restTemplate.getForEntity("/cars/{car}", Car.class, "Honda");
 

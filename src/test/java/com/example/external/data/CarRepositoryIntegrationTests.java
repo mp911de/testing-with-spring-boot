@@ -30,7 +30,9 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author Mark Paluch
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
+// no need to load the full context
+//@SpringBootTest
+@DataJpaTest
 public class CarRepositoryIntegrationTests {
 
     @Autowired
