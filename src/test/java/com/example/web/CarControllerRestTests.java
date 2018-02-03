@@ -16,16 +16,13 @@
 
 package com.example.web;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-import static org.springframework.boot.test.context.SpringBootTest.*;
-
-import java.util.Optional;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -56,8 +53,6 @@ public class CarControllerRestTests {
 
     @Test
     public void findCarShouldReturnCar() {
-
-        when(findCar.findCar("Honda")).thenReturn(Optional.of(new Car("Honda")));
 
         ResponseEntity<Car> honda = restTemplate.getForEntity("/cars/{car}", Car.class, "Honda");
 
